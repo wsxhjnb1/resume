@@ -1,0 +1,10 @@
+/output/
+/tmp/
+__pycache__/
+*.aux
+*.log
+*.out
+*.xdv
+*.synctex.gz
+.DS_Store
+Thumbs.db

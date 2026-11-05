@@ -1,0 +1,60 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{resume_style}[2026/10/14 Refined bilingual research resume]
+\RequirePackage[left=0.60in,right=0.60in,top=0.48in,bottom=0.50in]{geometry}
+\RequirePackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Calibri}
+\setsansfont{Segoe UI}[BoldFont={Segoe UI Semibold},ItalicFont={Segoe UI Italic},BoldItalicFont={Segoe UI Bold Italic}]
+\newfontfamily\cvdisplayfont{Segoe UI}[BoldFont={Segoe UI Semibold}]
+\RequirePackage{xcolor}
+\definecolor{ink}{HTML}{242A30}
+\definecolor{accent}{HTML}{14646B}
+\definecolor{muted}{HTML}{5D6873}
+\definecolor{rulecolor}{HTML}{D6E0E2}
+\RequirePackage{enumitem}
+\RequirePackage{titlesec}
+\RequirePackage{needspace}
+\RequirePackage[unicode,hidelinks]{hyperref}
+\hypersetup{pdfauthor={Yuhao Xie},pdfsubject={LLM inference, KV cache quantization, GPU kernel optimization}}
+\urlstyle{same}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1.8em}
+\raggedright
+\color{ink}
+\newcommand{\cvsectionfont}{\cvdisplayfont\bfseries\addfontfeatures{LetterSpace=3}}
+\titleformat{\section}{\fontsize{10.5}{13}\selectfont\cvsectionfont\color{accent}}{}{0pt}{}[\vspace{1.5pt}{\color{rulecolor}\titlerule[0.3pt]}]
+\titlespacing*{\section}{0pt}{7.5pt}{4pt}
+\setlist[itemize]{leftmargin=11.5pt,labelsep=4.7pt,itemsep=1.7pt,topsep=2.2pt,parsep=0pt,partopsep=0pt,label={\textcolor{accent}{\scriptsize\textbullet}}}
+\newcommand{\cvphone}{+1 (689) 220 8144}
+\newcommand{\cvname}{Yuhao Xie}
+\newcommand{\cvhead}[2]{%
+  {\cvdisplayfont\fontsize{27}{30}\selectfont\bfseries \cvname}\par
+  \vspace{3pt}{\fontsize{10.5}{13}\selectfont\color{accent}#1}\par
+  \vspace{5pt}{\fontsize{9.1}{11.5}\selectfont\color{muted}
+    \cvphone\enspace\textbar\enspace
+    \href{mailto:yuhaoxie1999@gmail.com}{yuhaoxie1999@gmail.com}\enspace\textbar\enspace
+    \href{https://github.com/wsxhjnb1}{GitHub: wsxhjnb1}\enspace\textbar\enspace
+    \href{https://www.linkedin.com/in/yuhao-xie/}{LinkedIn: yuhao-xie}}
+  \par\vspace{6pt}{\color{accent}\hrule height 0.8pt}\vspace{6pt}
+  {\fontsize{9.9}{12.5}\selectfont #2\par}
+}
+\newcommand{\entry}[4]{%
+  \Needspace{3\baselineskip}%
+  \textbf{#1}\hfill{\fontsize{9.3}{11.8}\selectfont\color{muted}#2}\par
+  \vspace{0.6pt}{\fontsize{9.6}{12}\selectfont\color{muted}#3\hfill #4}\par
+}
+\newcommand{\project}[1]{\Needspace{3\baselineskip}{\cvdisplayfont\fontsize{10.3}{13}\selectfont\bfseries #1}\par}
+\newcommand{\compactentry}[3]{%
+  \Needspace{2\baselineskip}\textbf{#1}\enspace{\color{rulecolor}\textbar}\enspace
+  {\fontsize{9.6}{12}\selectfont\color{muted}#2}\hfill
+  {\fontsize{9.3}{11.8}\selectfont\color{muted}#3}\par
+}
+\newcommand{\cvpublication}[4]{%
+  \Needspace{5\baselineskip}%
+  {\fontsize{9.5}{12}\selectfont\color{muted}#1}\par
+  \vspace{0.8pt}\textbf{#2}\par
+  \vspace{1.2pt}{\fontsize{9.5}{12}\selectfont\textit{#3}\enspace #4}\par
+}
+\newcommand{\sep}{\vspace{3.5pt}}

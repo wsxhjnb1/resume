@@ -1,0 +1,66 @@
+% Compile locally with Tectonic or XeLaTeX. Segoe UI headings, Calibri body.
+\documentclass[letterpaper,10pt]{article}
+\usepackage{resume_style}
+\hypersetup{pdftitle={Yuhao Xie | LLM Inference and GPU Systems}}
+\begin{document}
+\fontsize{10.3}{12.5}\selectfont
+
+\cvhead{LLM Inference \enspace\textbar\enspace KV Cache Quantization \enspace\textbar\enspace GPU Kernel Optimization}{%
+Computer Engineering PhD student focused on efficient LLM inference, with an \textbf{EMNLP 2026 main-conference first-author paper} and experience integrating CUDA quantization kernels into an LLM inference engine.}
+
+\section{EDUCATION}
+\compactentry{University of Central Florida}{PhD, Computer Engineering}{Aug. 2023 -- Aug. 2027 (expected)}
+\sep
+\compactentry{University of Florida}{MS, Electrical \& Computer Engineering}{Aug. 2021 -- May 2023}
+\sep
+\compactentry{Hangzhou Dianzi University}{BS, Electrical \& Computer Engineering}{Sept. 2017 -- June 2021}
+
+\section{PUBLICATION}
+\cvpublication{\textbf{Yuhao Xie}, Mingjie Lin.}
+{Beyond: Better-than-Full-Precision KV Caches via Learnable Non-Uniform Quantization as Implicit Regularization.}
+{EMNLP 2026, main conference.}
+{\href{https://wsxhjnb1.github.io/Beyond-KV-Cache/paper/Beyond.pdf}{\textcolor{accent}{[Paper]}}
+\enspace\href{https://github.com/wsxhjnb1/Beyond-KV-Cache}{\textcolor{accent}{[Code]}}
+\enspace\href{https://wsxhjnb1.github.io/Beyond-KV-Cache/}{\textcolor{accent}{[Project]}}}
+
+\section{LLM RESEARCH \& ENGINEERING}
+\entry{Hithink RoyalFlush Information Network}{May -- Aug. 2024}{Research Intern, Large Language Models}{Zhejiang, China}
+\begin{itemize}
+  \item Developed CUDA quantization/dequantization kernels, reducing execution time by \textbf{90\% versus a PyTorch implementation}; integrated them into the company's LLM inference engine with \textbf{FlashAttention and paged KV-cache support}.
+  \item Implemented \textbf{2-bit KV-cache quantization} with separate grouping along the sequence and head dimensions for keys and values; achieved \textbf{50\%} lower GPU memory use and \textbf{8$\times$} throughput for the company's 7B financial LLMs \mbox{on a single NVIDIA A10}.
+  \item Tuned quantization group size and residual length on internal benchmarks to retain \textbf{99.3\% of the original model's accuracy}.
+\end{itemize}
+
+\section{SELECTED SYSTEMS PROJECTS}
+\project{Fused Attention Decoding with Quantized KV Caches}
+\begin{itemize}
+  \item Fused \textbf{on-the-fly KV dequantization} with attention scoring, online softmax, and value accumulation; reconstructed packed K/V in registers using groupwise quantization parameters, avoiding full-precision KV materialization in HBM.
+  \item Achieved a \textbf{40\% inference speedup for Llama 2 7B} on a single \textbf{NVIDIA H100} versus a Hugging Face implementation.
+\end{itemize}
+\sep
+\project{OrbitCall: vLLM Agent Scoring Optimization \enspace\href{https://github.com/wsxhjnb1/OrbitCall}{\textcolor{accent}{[Code]}}}
+\begin{itemize}
+  \item Built a \textbf{vLLM 0.29 suffix-logprob plugin for CUDA GPUs} to score finite key-order tool-call families; preserved native \textbf{LM-head projection shapes} and complete JSON/EOS likelihoods while reducing normalization, rank calculation, and CPU transfer.
+  \item On \textbf{DGX Spark (GB10)}, measured a \textbf{1.08$\times$ complete two-round Agent speedup} for Qwen2.5-3B versus native full scoring across six paired blocks (eight fixed workflows).
+\end{itemize}
+
+\section{ADDITIONAL ENGINEERING EXPERIENCE}
+\compactentry{Rtelligent Technology}{Software Engineer Intern}{Jan. -- May 2021}
+\begin{itemize}
+  \item Developed ARM Cortex-M firmware in C++; reduced G-code processing time by \textbf{20\%} and used Xilinx FPGA raster-image parallelism to increase laser engraving speed by \textbf{30\%}.
+\end{itemize}
+\section{TECHNICAL SKILLS}
+\textbf{Programming \& tools:} Python, C/C++, CUDA, OpenMP, Verilog, Git, Docker.\par
+\textbf{ML systems:} PyTorch, Transformers, vLLM, FlashAttention, KV-cache quantization, speculative decoding.\par
+
+\begingroup
+\titlespacing*{\section}{0pt}{5pt}{4pt}
+\section{TEACHING, SERVICE \& HONORS}
+\fontsize{10.3}{11.8}\selectfont
+\textbf{UCF: Instructor:} Aug. -- Dec. 2026: Digital Systems (EEE3342C) and \mbox{Computer Organization (EEL3801C)}; \mbox{Aug. 2024 -- May 2025: Computer Organization Lab}; \textbf{Teaching Assistant:} Aug. -- Dec. 2026: Hardware Security and Trusted Circuit Design (EEE4346C); \mbox{May -- Aug. 2025: Junior Design}.\par
+\textbf{Reviewer:} ICLR 2027.\par
+\textbf{ORCGS Doctoral Fellowship}, UCF (2023--2027).\par
+Zhejiang provincial collegiate programming competition, team third prize (2019); academic scholarships, Hangzhou Dianzi University (2017--2020).
+\par\endgroup
+
+\end{document}

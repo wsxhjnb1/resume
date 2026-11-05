@@ -1,0 +1,69 @@
+% Compile locally with Tectonic or XeLaTeX. CJK body: DengXian; headings: Microsoft YaHei.
+\documentclass[a4paper,10pt]{article}
+\usepackage{resume_style}
+\renewcommand{\cvphone}{+86 13968074414}
+\usepackage{xeCJK}
+\setCJKmainfont{DengXian}
+\setCJKfamilyfont{cvheading}{Microsoft YaHei}
+\renewcommand{\cvname}{\CJKfamily{cvheading}谢雨豪}
+\renewcommand{\cvsectionfont}{\bfseries\CJKfamily{cvheading}}
+\hypersetup{pdftitle={Yuhao Xie | 大模型推理与 GPU 系统}}
+\begin{document}
+\fontsize{10.25}{14}\selectfont
+
+\cvhead{大模型高效推理\enspace\textbar\enspace KV Cache 量化\enspace\textbar\enspace GPU 内核优化}{%
+计算机工程博士在读，研究方向为大模型高效推理与低比特 KV Cache 量化。
+\textbf{EMNLP 2026 主会一作论文已接收}，具备 CUDA 量化内核开发与大模型推理引擎集成经验。}
+
+\section{教育背景}
+\compactentry{中佛罗里达大学（UCF）}{计算机工程博士在读}{2023.08 -- 2027.08（预计）}
+\sep
+\compactentry{佛罗里达大学（UF）}{电气与计算机工程硕士}{2021.08 -- 2023.05}
+\sep
+\compactentry{杭州电子科技大学}{电气与计算机工程学士}{2017.09 -- 2021.06}
+
+\section{学术论文}
+\cvpublication{\textbf{Yuhao Xie}, Mingjie Lin.}
+{Beyond: Better-than-Full-Precision KV Caches via Learnable Non-Uniform Quantization as Implicit Regularization.}
+{EMNLP 2026, main conference.}
+{\href{https://wsxhjnb1.github.io/Beyond-KV-Cache/paper/Beyond.pdf}{\textcolor{accent}{[论文全文]}}
+\enspace\href{https://github.com/wsxhjnb1/Beyond-KV-Cache}{\textcolor{accent}{[开源代码]}}
+\enspace\href{https://wsxhjnb1.github.io/Beyond-KV-Cache/}{\textcolor{accent}{[项目主页]}}}
+研究主题：可学习非均匀 KV Cache 量化与隐式正则化。
+
+\section{大模型研究与工程经历}
+\entry{同花顺（Hithink RoyalFlush Information Network）}{2024.05 -- 2024.08}{大语言模型研究实习生}{中国，浙江}
+\begin{itemize}
+  \item 开发大模型张量量化与反量化 \textbf{CUDA 内核}，相较 PyTorch 实现，执行耗时降低 \textbf{90\%}；集成至公司大模型推理引擎，支持 \textbf{FlashAttention 与分页 KV Cache 计算}。
+  \item 实现 \textbf{2-bit KV Cache 量化}，对 Key、Value 分别沿序列长度与头维度分组；在\textbf{单张 NVIDIA A10、公司 7B 金融大模型}上，GPU 显存占用降低 \textbf{50\%}，吞吐量达到原来的 \textbf{8 倍}。
+  \item 基于内部评测调整量化分组大小与残差长度，量化后保留原模型 \textbf{99.3\% 的准确率}。
+\end{itemize}
+
+\section{代表性系统项目}
+\project{量化 KV Cache 的融合注意力解码}
+\begin{itemize}
+  \item 将 \textbf{KV 按需反量化}与注意力得分计算、在线 Softmax、Value 加权累加融合至解码内核；直接读取压缩编码与分组量化参数，在寄存器中重构 K/V，避免在 HBM 中生成完整的高精度 KV 副本，减少显存读写。
+  \item 在\textbf{单张 NVIDIA H100} 上运行 \textbf{Llama 2 7B}，相较 Hugging Face 实现取得 \textbf{40\% 推理加速}。
+\end{itemize}
+\sep
+\project{OrbitCall：vLLM Agent 评分优化 \enspace\href{https://github.com/wsxhjnb1/OrbitCall}{\textcolor{accent}{[开源代码]}}}
+\begin{itemize}
+  \item 面向 \textbf{CUDA GPU} 开发 \textbf{vLLM 0.29 后缀概率评分插件}，用于有限键序工具调用评分；保留原生 \textbf{LM head 投影形状}及完整 JSON/EOS 概率，减少归一化、排名计算与 CPU 传输开销。
+  \item 在 \textbf{DGX Spark（GB10）}上，经六组配对测速（八个固定任务流程），Qwen2.5-3B 的\textbf{完整双轮 Agent 较原生全量评分加速 1.08 倍}。
+\end{itemize}
+
+\section{其他工程经历}
+\compactentry{Rtelligent Technology}{软件工程实习生}{2021.01 -- 2021.05}
+\begin{itemize}
+  \item 为 ARM Cortex-M 激光雕刻系统开发 C++ 固件；优化 G-code 处理使处理耗时降低 \textbf{20\%}，利用 Xilinx FPGA 并行处理光栅图像使雕刻速度提升 \textbf{30\%}。
+\end{itemize}
+\section{技术能力}
+\textbf{编程与工具：}Python、C/C++、CUDA、OpenMP、Verilog、Git、Docker。\par
+\textbf{大模型系统：}PyTorch、Transformers、vLLM、FlashAttention、KV Cache 量化、推测解码。\par
+
+\section{教学、学术服务与荣誉}
+\textbf{中佛罗里达大学：讲师：}2026.08--2026.12：数字系统（EEE3342C）、\mbox{计算机组成（EEL3801C）}；\mbox{2024.08--2025.05：计算机组成实验课程}；\textbf{助教：}2026.08--2026.12：硬件安全与可信电路设计（EEE4346C）；2025.05--2025.08：Junior Design。\par
+\textbf{学术服务：}ICLR 2027 审稿人。\par
+\textbf{ORCGS 博士奖学金}（2023--2027）；浙江省大学生程序设计竞赛省赛团体三等奖（2019）；杭州电子科技大学学业奖学金（一、二、三等，2017--2020）。
+
+\end{document}
