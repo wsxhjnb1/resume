@@ -14,8 +14,7 @@ quantization, and GPU systems.
 - `yuhao_xie_resume_zh.tex` — Chinese, one A4 page; display name 谢雨豪.
 - `resume_style.sty` — shared typography and layout.
 
-The PDFs are the latest approved local versions, published here on 2026-11-05.
-`SHA256SUMS` records the exact PDF and source bytes in this release.
+`SHA256SUMS` records the exact PDF and source bytes for the current release.
 
 ## Build locally
 
@@ -35,6 +34,6 @@ fonts and page bounds.
 ## Research
 
 - [Beyond: KV-cache quantization](https://github.com/wsxhjnb1/Beyond-KV-Cache)
-- [OrbitCall: vLLM Agent scoring](https://github.com/wsxhjnb1/OrbitCall)
+- [FA2 Residency Scheduler](https://github.com/wsxhjnb1/FA2-Residency)
 
 Contact: [yuhaoxie1999@gmail.com](mailto:yuhaoxie1999@gmail.com).
