@@ -18,13 +18,13 @@ for language in ("en", "zh"):
     readable_text = re.sub(r"\s+", " ", text.replace("‐", "-"))
     for term in ("Yuhao Xie", "EMNLP 2026", "main conference.", "99.3%", "NVIDIA A10", "NVIDIA H100", "40%", "ORCGS", "CUDA/CuTe", "DGX Spark", "Qwen3-4B", "32K", "FlashAttention-2", "1.040", "1.016"):
         assert term in readable_text, (path.name, term)
-    for removed in ("83.1%", "62.5%", "FPGA Accelerator for CNN", "CNN 的 FPGA", "TF32x3", "7.95", "1.47", "119/103", "EAGLE3", "CUDA Graph Padding", "228/256", "accepted", "BF16", "FP16", "36/36", "419", "OrbitCall", "vLLM 0.29", "Qwen2.5-3B"):
+    for removed in ("83.1%", "62.5%", "FPGA Accelerator for CNN", "CNN 的 FPGA", "TF32x3", "7.95", "1.47", "119/103", "EAGLE3", "CUDA Graph Padding", "228/256", "accepted", "BF16", "FP16", "36/36", "419", "OrbitCall", "vLLM 0.29", "Qwen2.5-3B", "FA2 Residency Scheduler", "驻留调度与加速"):
         assert removed not in readable_text, (path.name, removed)
     assert "�" not in text, path.name
     compact_text = readable_text.replace(" ", "")
     expected_header_name = "谢雨豪" if language == "zh" else "YuhaoXie"
     assert compact_text.startswith(expected_header_name), (path.name, "header name")
-    project_terms = ("FlashAttention-2驻留调度与加速", "32K上下文预填充", "批大小4", "完整前向") if language == "zh" else ("FA2ResidencyScheduler", "prefillatbatch4", "fullforwardpass")
+    project_terms = ("TileCadence·FlashAttention-2内核优化", "32K上下文预填充", "批大小4", "完整前向") if language == "zh" else ("TileCadence—FlashAttention-2KernelTuning", "prefillatbatch4", "fullforwardpass")
     for term in project_terms:
         assert term in compact_text, (path.name, term)
     for course in ("EEE3342C", "EEE4346C", "EEL3801C"):
@@ -48,7 +48,7 @@ for language in ("en", "zh"):
         "https://wsxhjnb1.github.io/Beyond-KV-Cache/paper/Beyond.pdf",
         "https://wsxhjnb1.github.io/Beyond-KV-Cache/",
         "https://www.linkedin.com/in/yuhao-xie/",
-        "https://github.com/wsxhjnb1/FA2-Residency",
+        "https://github.com/wsxhjnb1/TileCadence",
     }
     actual_links = set()
     font_status = []
@@ -68,7 +68,7 @@ for language in ("en", "zh"):
             assert embedded, (path.name, str(font.get("/BaseFont")))
             font_status.append({"name": str(font.get("/BaseFont")), "embedded": embedded})
     assert expected_links <= actual_links, (path.name, actual_links)
-    assert not any("orbitcall" in link.lower() for link in actual_links), (path.name, actual_links)
+    assert not any(old in link.lower() for link in actual_links for old in ("orbitcall", "fa2-residency")), (path.name, actual_links)
     with pdfplumber.open(path) as pdf:
         page = pdf.pages[0]
         visible = [char for char in page.chars if char["text"].strip()]

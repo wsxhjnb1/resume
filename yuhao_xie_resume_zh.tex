@@ -46,7 +46,7 @@
   \item 在\textbf{单张 NVIDIA H100} 上运行 \textbf{Llama 2 7B}，相较 Hugging Face 实现取得 \textbf{40\% 推理加速}。
 \end{itemize}
 \sep
-\project{FlashAttention-2 驻留调度与加速 \enspace\href{https://github.com/wsxhjnb1/FA2-Residency}{\textcolor{accent}{[开源代码]}}}
+\project{TileCadence · FlashAttention-2 内核优化 \enspace\href{https://github.com/wsxhjnb1/TileCadence}{\textcolor{accent}{[开源代码]}}}
 \begin{itemize}
   \item 使用\textbf{约束求解器}联合规划分块数据的生命周期、共享内存复用与 K/V 异步预取，生成 \textbf{CUDA/CuTe} 内核，并依据编译后的资源占用和实测延迟择优。
   \item 在 \textbf{DGX Spark} 上测试 Qwen3-4B 的 32K 上下文预填充（批大小 4），相较默认 FlashAttention-2，\textbf{注意力和完整前向分别达到 1.040 倍和 1.016 倍速度}。

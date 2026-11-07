@@ -34,6 +34,6 @@ fonts and page bounds.
 ## Research
 
 - [Beyond: KV-cache quantization](https://github.com/wsxhjnb1/Beyond-KV-Cache)
-- [FA2 Residency Scheduler](https://github.com/wsxhjnb1/FA2-Residency)
+- [TileCadence](https://github.com/wsxhjnb1/TileCadence)
 
 Contact: [yuhaoxie1999@gmail.com](mailto:yuhaoxie1999@gmail.com).
