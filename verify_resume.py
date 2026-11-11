@@ -16,7 +16,7 @@ for language in ("en", "zh"):
     assert len(reader.pages) == 1, (path.name, len(reader.pages))
     text = "\n".join(page.extract_text() for page in reader.pages)
     readable_text = re.sub(r"\s+", " ", text.replace("‐", "-"))
-    for term in ("Yuhao Xie", "EMNLP 2026", "main conference.", "99.3%", "NVIDIA A10", "NVIDIA H100", "40%", "ORCGS", "CUDA/CuTe", "DGX Spark", "Qwen3-4B", "32K", "FlashAttention-2", "1.040", "1.016"):
+    for term in ("Yuhao Xie", "EMNLP 2026", "main conference.", "99.3%", "NVIDIA A10", "NVIDIA H100", "40%", "ORCGS", "CUDA/CuTe", "Ampere", "Blackwell", "DGX Spark", "Qwen3-4B", "8K", "32K", "FlashAttention-2", "1.11", "1.13", "LSE"):
         assert term in readable_text, (path.name, term)
     for removed in ("83.1%", "62.5%", "FPGA Accelerator for CNN", "CNN 的 FPGA", "TF32x3", "7.95", "1.47", "119/103", "EAGLE3", "CUDA Graph Padding", "228/256", "accepted", "BF16", "FP16", "36/36", "419", "OrbitCall", "vLLM 0.29", "Qwen2.5-3B", "FA2 Residency Scheduler", "驻留调度与加速"):
         assert removed not in readable_text, (path.name, removed)
@@ -24,7 +24,11 @@ for language in ("en", "zh"):
     compact_text = readable_text.replace(" ", "")
     expected_header_name = "谢雨豪" if language == "zh" else "YuhaoXie"
     assert compact_text.startswith(expected_header_name), (path.name, "header name")
-    project_terms = ("TileCadence·FlashAttention-2内核优化", "32K上下文预填充", "批大小4", "完整前向") if language == "zh" else ("TileCadence—FlashAttention-2KernelTuning", "prefillatbatch4", "fullforwardpass")
+    project_terms = (
+        ("TileCadence·FlashAttention-2共享内存调度", "概率块、输出分片和LSE", "13个Qwen3-4B预填充形状", "逐位一致")
+        if language == "zh"
+        else ("TileCadence—Shared-MemorySchedulingforFlashAttention-2", "probabilitytiles,outputfragments,andLSE", "13Qwen3-4Bprefillshapes", "bitwise-identicaloutputsandLSE")
+    )
     for term in project_terms:
         assert term in compact_text, (path.name, term)
     for course in ("EEE3342C", "EEE4346C", "EEL3801C"):

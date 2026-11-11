@@ -38,10 +38,10 @@ Computer Engineering PhD student focused on efficient LLM inference, with an \te
   \item Achieved a \textbf{40\% inference speedup for Llama 2 7B} on a single \textbf{NVIDIA H100} versus a Hugging Face implementation.
 \end{itemize}
 \sep
-\project{TileCadence --- FlashAttention-2 Kernel Tuning \enspace\href{https://github.com/wsxhjnb1/TileCadence}{\textcolor{accent}{[Code]}}}
+\project{TileCadence --- Shared-Memory Scheduling for FlashAttention-2 \enspace\href{https://github.com/wsxhjnb1/TileCadence}{\textcolor{accent}{[Code]}}}
 \begin{itemize}
-  \item Built a \textbf{constraint solver} to schedule tile lifetimes, shared-memory reuse, and asynchronous K/V prefetch in \textbf{CUDA/CuTe}, ranking kernels by compiled resource use and measured latency.
-  \item On \textbf{DGX Spark}, Qwen3-4B prefill at batch 4 and 32K context ran \textbf{1.040$\times$ faster in attention} and \textbf{1.016$\times$ faster over the full forward pass} versus default FlashAttention-2.
+  \item Built a \textbf{constraint solver} to reassign freed shared memory to probability tiles, output fragments, and LSE. Compiled \textbf{CUDA/CuTe} kernels for Ampere and Blackwell and ranked schedules by resource use and measured latency.
+  \item Measured \textbf{1.11--1.13$\times$} attention speedups over default FlashAttention-2 across 13 Qwen3-4B prefill shapes (8K--32K) on \textbf{DGX Spark}, with bitwise-identical outputs and LSE.
 \end{itemize}
 
 \section{ADDITIONAL ENGINEERING EXPERIENCE}
